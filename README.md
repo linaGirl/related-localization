@@ -29,7 +29,7 @@ You need to store your localized data on mapping tables if you want to use this 
 - code: varchar(2)
 
 
-** eventLocale**
+**eventLocale**
 
 - id_event: integer
 - id_language: integer
@@ -48,8 +48,10 @@ To add the extension to the orm you have to initialize the extension first.
 
     var orm = new ORM(dbConfig);
 
-    // you may set the names of the language table and the column containing the language codes
-    // default is «language» and «code». The extions will apply itself to all entites which 
+    // you may set the names of the language table and 
+    // the column containing the language codes
+    // default is «language» and «code». The extions 
+    // will apply itself to all entites which 
     // have a mapping to the language table
     var localized = new ORMLocalization({
           languageTable     : 'lang'
@@ -70,7 +72,8 @@ if you want the locale data returned inline with the base entity you have to cal
     
     orm.myDatabase.event(['*']).setLocale(['en', 'nl']).limit(1).find(cb);
 
-    // the result if there is an event with an english title but only with an dutch description
+    // the result if there is an event with an english 
+    // title but only with an dutch description
     {
           id: 1
         , title: 'best event ever'
