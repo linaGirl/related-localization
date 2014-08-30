@@ -118,4 +118,8 @@
 		it('the extension should return inline locale data', function(done) {
 			db.event(['*']).setLocale(['nl', 'de']).find(expect('[{"id":1,"description":"nl","title":"de"}]', done));
 		});
+
+		it('the extension should NOT return inline locale data if not told to do so', function(done) {
+			db.event(['*']).find(expect('[{"id":1}]', done));
+		});
 	})
