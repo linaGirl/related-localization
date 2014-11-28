@@ -99,6 +99,7 @@
 		it('(inserting test data)', function(done) {
 			var wait = async.waiter(function(){
 				var evt = new db.event();
+				evt.venue = new db.venue({});
 				evt.eventLocale.push(new db.eventLocale({title: 'de', description: 'de', language: db.language({code:'de'})}));
 				evt.eventLocale.push(new db.eventLocale({title: 'en', language: db.language({code:'en'})}));
 				evt.eventLocale.push(new db.eventLocale({description: 'nl', language: db.language({code:'nl'})}));
@@ -116,10 +117,18 @@
 
 	describe('[Querying]', function() {
 		it('the extension should return inline locale data', function(done) {
-			db.event(['*']).setLocale(['nl', 'de']).find(expect('[{"id":1,"description":"nl","title":"de"}]', done));
+			db.event(['*']).setLocale(['nl', 'de']).find(expect('[{"id":1,"id_venue":1,"description":"nl","title":"de"}]', done));
 		});
 
 		it('the extension should NOT return inline locale data if not told to do so', function(done) {
-			db.event(['*']).find(expect('[{"id":1}]', done));
+			db.event(['*']).find(expect('[{"id":1,"id_venue":1}]', done));
+		});
+
+		it('should work on non localized tables ', function(done) {
+			db.venue('*').find(expect('[{"id":1}]', done));
+		});
+
+		it('should work on non localized tables with seleting locales on them', function(done) {
+			db.venue('*').setLocale(['de', 'nl']).getEvent('*').find(expect('[{"event":[{"id":1,"id_venue":1,"description":"de","title":"de"}],"id":1}]', done));
 		});
 	})

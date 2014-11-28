@@ -3,10 +3,19 @@
 DROP SCHEMA IF EXISTS ee_orm_localization_test CASCADE;
 CREATE SCHEMA ee_orm_localization_test;
 
+CREATE TABLE ee_orm_localization_test.venue (
+      id                serial NOT NULL
+    , CONSTRAINT "pk_venue" PRIMARY KEY (id)
+);
+
 CREATE TABLE ee_orm_localization_test.event (
       id                serial NOT NULL
+    , id_venue          integer NOT NULL
     , CONSTRAINT "pk_event" PRIMARY KEY (id)
+    , CONSTRAINT "fk_event_language" FOREIGN KEY (id_venue) REFERENCES ee_orm_localization_test.venue (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE RESTRICT
 );
+
+
 
 CREATE TABLE ee_orm_localization_test.language (
       id                serial NOT NULL
