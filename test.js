@@ -12,21 +12,19 @@
     orm.use(new Extension({orm:orm}));
 
 
-    orm.on('load', function(err) {
+    orm.load(function(err) {
         log('orm loaded');
         var   db = orm.ee_orm_localization_test
             , start;
-   
-
-        var done = function(err, data){
-            if (err) log(err);
-            if (data && data.dir) data.dir();
-            log(data);
-        }
+    
 
 
-        db.event(['*']).setLocale(['nl', 'en']).find(function(err, list) {
-            log(err, list, list.length);
-
-        });   
+       //return;
+        db.event('*', {
+            _: ORM.or({
+                  id: 1
+            }, {
+                description: ORM.like('nl')
+            })
+        }).setDebugMode().setLocale(['nl', 'de']).find(log);  
     });

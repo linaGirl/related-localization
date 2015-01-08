@@ -132,4 +132,22 @@
 		it('should work on non localized tables with seleting locales on them', function(done) {
 			db.venue('*').setLocale(['de', 'nl']).getEvent('*').find(expect('[{"event":[{"id":1,"id_venue":1,"description":"de","title":"de"}],"id":1}]', done));
 		});
+
+
+		it('the extension should move filters to the correct entity', function(done) {
+			db.event('*', {
+				  id: 1
+				, description: ORM.like('nl')
+			}).setLocale(['nl', 'de']).find(expect('[{"id":1,"id_venue":1,"description":"nl","title":"de"}]', done));
+		});
+
+		it('the extension should move a bit more complex filters to the correct entity', function(done) {
+			db.event('*', {
+				_: ORM.or({
+					  id: 1
+				}, {
+					description: ORM.like('nl')
+				})
+			}).setLocale(['nl', 'de']).find(expect('[{"id":1,"id_venue":1,"description":"nl","title":"de"}]', done));
+		});
 	})
