@@ -34,26 +34,23 @@
 			try {
 				config = require('../config.js').db
 			} catch(e) {
-				config = {
-					ee_orm_localization_test: {
-						  type: 'postgres'
-						, hosts: [
-							{
-								  host 		: 'localhost'
-								, username 	: 'postgres'
-								, password 	: ''
-								, port 		: 5432
-								, mode 		: 'readwrite'
-								, database 	: 'test'
-							}
-						]
-					}
-				};
+				config = [{
+		              type      : 'postgres'
+		            , database  : 'test'
+		            , schema    : 'ee_orm_localization_test'
+		            , hosts: [{
+		                  host           : '127.0.0.1'
+		                , username       : 'root'
+		                , password       : ''
+		                , port           : 5432
+		                , mode           : 'readwrite'
+		            }]
+		        }];
 			}
 
 			this.timeout(5000);
 			orm = new ORM(config);
-			orm.on('load', done);
+			orm.load(done)
 		});
 
 		it('should be able to drop & create the testing schema ('+sqlStatments.length+' raw SQL queries)', function(done) {
@@ -122,6 +119,10 @@
 
 		it('the extension should NOT return inline locale data if not told to do so', function(done) {
 			db.event(['*']).find(expect('[{"id":1,"id_venue":1}]', done));
+		});
+
+		it('the extension should remove selected fields from the parent entity', function(done) {
+			db.event(['id', 'description']).setLocale(['nl', 'de']).find(expect('[{"id":1,"description":"nl"}]', done));
 		});
 
 		it('should work on non localized tables ', function(done) {
