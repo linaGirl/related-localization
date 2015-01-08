@@ -39,8 +39,8 @@
 		            , database  : 'test'
 		            , schema    : 'ee_orm_localization_test'
 		            , hosts: [{
-		                  host           : '127.0.0.1'
-		                , username       : 'root'
+		                  host           : 'localhost'
+		                , username       : 'postgres'
 		                , password       : ''
 		                , port           : 5432
 		                , mode           : 'readwrite'
