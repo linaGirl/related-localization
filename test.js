@@ -21,6 +21,14 @@
     
 
 
+        new db.event({
+              description: 'saved. win!'
+            , id_venue: 1
+        }).setLocale('nl').save(log);
+
+
+        return;
+
        //return;
         db.event('*', {
             _: ORM.or({
