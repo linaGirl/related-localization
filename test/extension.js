@@ -150,4 +150,14 @@
 				})
 			}).setLocale(['nl', 'de']).find(expect('[{"id":1,"id_venue":1,"description":"nl","title":"de"}]', done));
 		});
+
+		it('the extension should move order statements to the correct entity', function(done) {
+			db.event('*', {
+				_: ORM.or({
+					  id: 1
+				}, {
+					description: ORM.like('nl')
+				})
+			}).order('description').setLocale(['nl', 'de']).find(expect('[{"id":1,"id_venue":1,"description":"nl","title":"de"}]', done));
+		});
 	})

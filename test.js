@@ -7,6 +7,8 @@
         , project   = require('ee-project')
         , Extension = require('./');
 
+
+
     var orm = new ORM(project.config.db);
 
     orm.use(new Extension({orm:orm}));
@@ -26,5 +28,5 @@
             }, {
                 description: ORM.like('nl')
             })
-        }).setDebugMode().setLocale(['nl', 'de']).find(log);  
+        }).order('description').setDebugMode().setLocale(['nl', 'de']).find(log);  
     });
