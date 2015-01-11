@@ -160,4 +160,40 @@
 				})
 			}).order('description').setLocale(['nl', 'de']).find(expect('[{"id":1,"id_venue":1,"description":"nl","title":"de"}]', done));
 		});
-	})
+	});
+
+
+	describe('[Storing]', function() {
+		it('new locale records should work!', function(done) {
+			new db.event({
+	              description: 'saved. win!'
+	            , id_venue: 1
+        	}).setLocale('nl').save(expect('{"id":2,"id_venue":1,"description":"saved. win!"}', done));
+		});
+
+		it('updating existing records should work!', function(done) {
+			db.event({id:2}).setLocale(['en']).findOne(function(err, evt) {
+				if (err) done(err);
+				else if (!evt) done(new Error('record not found'));
+				else {
+					evt.title = 'a title. ya!';
+					evt.setLocale('nl');
+					evt.save(expect('{"id":2,"id_venue":1,"title":"a title. ya!"}', done));
+				}
+			}.bind(this));
+		});
+
+		it('updating existing records with empty values should work!', function(done) {
+			db.event({id:2}).setLocale(['en']).findOne(function(err, evt) {
+				if (err) done(err);
+				else if (!evt) done(new Error('record not found'));
+				else {
+					evt.title = null;
+					evt.description = null;
+					evt.setLocale('nl');
+					evt.save(expect('{"id":2,"id_venue":1}', done));
+				}
+			}.bind(this));
+		});
+	});
+

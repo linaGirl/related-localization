@@ -1,7 +1,7 @@
 {
       "name"                        : "ee-orm-localization"
     , "description"                 : "adds support for localization tables"
-    , "version"                     : "0.2.3"
+    , "version"                     : "0.3.0"
     , "homepage"                    : "https://github.com/eventEmitter/ee-orm-localization"
     , "author"                      : "Michael van der Weg <michael@eventemitter.com> (http://eventemitter.com/)" 
     , "licence"                     : "mit"
@@ -27,7 +27,7 @@
     , "devDependencies": {
           "mocha"                   : "1.17.x"
         , "ee-project"              : "0.2.x"
-        , "ee-orm"                  : "0.12.x"
+        , "ee-orm"                  : "0.13.x"
     }
     , "optionalDependencies": {}
     , "keywords"                    : ["ee", "orm", "nested-set", "extension"]

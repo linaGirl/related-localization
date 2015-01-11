@@ -21,10 +21,15 @@
     
 
 
-        new db.event({
-              description: 'saved. win!'
-            , id_venue: 1
-        }).setLocale('nl').save(log);
+        db.event({id:2}).setLocale(['en']).findOne(function(err, evt) {
+                if (err) log(err);
+                else if (!evt) log(new Error('record not found'));
+                else {
+                    evt.title = 'a title. ya!';
+                    evt.setLocale('nl');
+                    evt.save(log);
+                }
+            }.bind(this));
 
 
         return;
