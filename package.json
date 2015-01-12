@@ -1,7 +1,7 @@
 {
       "name"                        : "ee-orm-localization"
     , "description"                 : "adds support for localization tables"
-    , "version"                     : "0.3.0"
+    , "version"                     : "0.3.1"
     , "homepage"                    : "https://github.com/eventEmitter/ee-orm-localization"
     , "author"                      : "Michael van der Weg <michael@eventemitter.com> (http://eventemitter.com/)" 
     , "licence"                     : "mit"
