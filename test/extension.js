@@ -129,7 +129,7 @@
 			db.venue('*').find(expect('[{"id":1}]', done));
 		});
 
-		it('should work on non localized tables with seleting locales on them', function(done) {
+		it('should work on non localized tables when selecting locales on them', function(done) {
 			db.venue('*').setLocale(['de', 'nl']).getEvent('*').find(expect('[{"event":[{"id":1,"id_venue":1,"description":"de","title":"de"}],"id":1}]', done));
 		});
 
