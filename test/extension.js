@@ -196,4 +196,23 @@
 			}.bind(this));
 		});
 	});
+	
+
+
+	describe('Special cases', function() {
+		it('localized languages table', function(done) {
+			db.language('*')
+				.setLocale(['en'])
+				.findOne(done);
+		});
+
+
+		it('localized languages table with alias name', function(done) {
+			db.language.setMappingAccessorName('languageLocale', 'locale')
+
+			db.language('*')
+				.setLocale(['en'])
+				.findOne(done);
+		});
+	});
 

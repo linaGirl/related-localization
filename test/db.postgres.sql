@@ -23,6 +23,16 @@ CREATE TABLE ee_orm_localization_test.language (
     , CONSTRAINT "pk_language" PRIMARY KEY (id)
 );
 
+CREATE TABLE ee_orm_localization_test."languageLocale" (
+      id_language       integer NOT NULL
+    , id_languageLocale integer NOT NULL
+    , name              text
+    , CONSTRAINT "pk_languageLocale" PRIMARY KEY (id_languageLocale, id_language)
+    , CONSTRAINT "fk_languageLocale_languageLocale" FOREIGN KEY (id_languageLocale) REFERENCES ee_orm_localization_test.language (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE RESTRICT
+    , CONSTRAINT "fk_languageLocale_language" FOREIGN KEY (id_language) REFERENCES ee_orm_localization_test.language (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+
 CREATE TABLE ee_orm_localization_test."eventLocale" (
       id_event          integer NOT NULL
     , id_language       integer NOT NULL
