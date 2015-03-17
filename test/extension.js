@@ -1,5 +1,5 @@
 
-	
+
 	process.env.debug_sql = true;
 
 	var   Class 		= require('ee-class')
@@ -57,19 +57,35 @@
 			orm.getDatabase('ee_orm_localization_test').getConnection(function(err, connection) {
 				if (err) done(err);
 				else async.each(sqlStatments, connection.queryRaw.bind(connection), done);
-			});				
+			});
 		});
 	});
 
 
-	var expect = function(val, cb){
+	var expect = function(val, cb) {
+		var expectation = val ? (typeof val === 'string' ? JSON.parse(val) : val) : undefined;
+
 		return function(err, result){
-			try {
-				assert.equal(JSON.stringify(result), val);
-			} catch (err) {
-				return cb(err);
+			if (err) cb(err);
+			else {
+				if (!expectation) {
+					try {
+						assert.equal(result, expectation);
+					} catch (err) {
+						return cb(err);
+					}
+				}
+				else {
+					try {
+						assert.deepEqual(result.toJSON(), expectation);
+					} catch (err) {
+						return cb(err);
+					}
+				}
+
+				cb();
 			}
-			cb();
+
 		}
 	};
 
@@ -114,11 +130,11 @@
 
 	describe('[Querying]', function() {
 		it('the extension should return inline locale data', function(done) {
-			db.event(['*']).setLocale(['nl', 'de']).find(expect('[{"id":1,"id_venue":1,"description":"nl","title":"de"}]', done));
+			db.event(['*']).setLocale(['nl', 'de']).find(expect('[{"id":1,"title":null,"id_venue":1,"description":"nl"}]', done));
 		});
 
 		it('the extension should NOT return inline locale data if not told to do so', function(done) {
-			db.event(['*']).find(expect('[{"id":1,"id_venue":1}]', done));
+			db.event(['*']).find(expect('[{"id":1,"title":null,"id_venue":1}]', done));
 		});
 
 		it('the extension should remove selected fields from the parent entity', function(done) {
@@ -130,7 +146,7 @@
 		});
 
 		it('should work on non localized tables when selecting locales on them', function(done) {
-			db.venue('*').setLocale(['de', 'nl']).getEvent('*').find(expect('[{"event":[{"id":1,"id_venue":1,"description":"de","title":"de"}],"id":1}]', done));
+			db.venue('*').setLocale(['de', 'nl']).getEvent('*').find(expect('[{"event":[{"id":1,"id_venue":1,"title":null,"description":"de"}],"id":1}]', done));
 		});
 
 
@@ -138,7 +154,7 @@
 			db.event('*', {
 				  id: 1
 				, description: ORM.like('nl')
-			}).setLocale(['nl', 'de']).find(expect('[{"id":1,"id_venue":1,"description":"nl","title":"de"}]', done));
+			}).setLocale(['nl', 'de']).find(expect('[{"id":1,"id_venue":1,"title":null,"description":"nl"}]', done));
 		});
 
 		it('the extension should move a bit more complex filters to the correct entity', function(done) {
@@ -148,7 +164,7 @@
 				}, {
 					description: ORM.like('nl')
 				})
-			}).setLocale(['nl', 'de']).find(expect('[{"id":1,"id_venue":1,"description":"nl","title":"de"}]', done));
+			}).setLocale(['nl', 'de']).find(expect('[{"id":1,"id_venue":1,"title":null,"description":"nl"}]', done));
 		});
 
 		it('the extension should move order statements to the correct entity', function(done) {
@@ -158,7 +174,7 @@
 				}, {
 					description: ORM.like('nl')
 				})
-			}).order('description').setLocale(['nl', 'de']).find(expect('[{"id":1,"id_venue":1,"description":"nl","title":"de"}]', done));
+			}).order('description').setLocale(['nl', 'de']).find(expect('[{"id":1,"id_venue":1,"title":null,"description":"nl"}]', done));
 		});
 	});
 
@@ -168,7 +184,7 @@
 			new db.event({
 	              description: 'saved. win!'
 	            , id_venue: 1
-        	}).setLocale('nl').save(expect('{"id":2,"id_venue":1,"description":"saved. win!"}', done));
+        	}).setLocale('nl').save(expect('{"id":2,"id_venue":1,"title":null,"description":"saved. win!"}', done));
 		});
 
 		it('updating existing records should work!', function(done) {
@@ -176,9 +192,9 @@
 				if (err) done(err);
 				else if (!evt) done(new Error('record not found'));
 				else {
-					evt.title = 'a title. ya!';
+					evt.description = 'a title. ya!';
 					evt.setLocale('nl');
-					evt.save(expect('{"id":2,"id_venue":1,"title":"a title. ya!"}', done));
+					evt.save(expect('{"id":2,"id_venue":1,"title":null,"description":"a title. ya!"}', done));
 				}
 			}.bind(this));
 		});
@@ -191,12 +207,12 @@
 					evt.title = null;
 					evt.description = null;
 					evt.setLocale('nl');
-					evt.save(expect('{"id":2,"id_venue":1}', done));
+					evt.save(expect('{"id":2,"id_venue":1,"title":null}', done));
 				}
 			}.bind(this));
 		});
 	});
-	
+
 
 
 	describe('Special cases', function() {
@@ -215,4 +231,3 @@
 				.findOne(done);
 		});
 	});
-

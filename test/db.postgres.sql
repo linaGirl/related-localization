@@ -11,6 +11,7 @@ CREATE TABLE ee_orm_localization_test.venue (
 CREATE TABLE ee_orm_localization_test.event (
       id                serial NOT NULL
     , id_venue          integer NOT NULL
+    , title             integer
     , CONSTRAINT "pk_event" PRIMARY KEY (id)
     , CONSTRAINT "fk_event_language" FOREIGN KEY (id_venue) REFERENCES ee_orm_localization_test.venue (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE RESTRICT
 );
