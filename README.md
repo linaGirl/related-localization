@@ -1,16 +1,16 @@
-# ee-orm-localization
+# related-localization
 
-Adds support for locale table sot the ee-orm. If you store your locale data on mapping tables between the entity and a 
+Adds support for locale table sot the related. If you store your locale data on mapping tables between the entity and a 
 lanugage table this extension loads the locale data and puts the on the entity itself. currently read only.
 
 ## installation
 
-	npm install ee-orm-localization
+	npm install related-localization
 
 
 ## build status
 
-[![Build Status](https://travis-ci.org/eventEmitter/ee-orm-localization.png?branch=master)](https://travis-ci.org/eventEmitter/ee-orm-localization)
+[![Build Status](https://travis-ci.org/eventEmitter/related-localization.png?branch=master)](https://travis-ci.org/eventEmitter/related-localization)
 
 
 
@@ -42,8 +42,8 @@ You need to store your localized data on mapping tables if you want to use this 
 
 To add the extension to the orm you have to initialize the extension first.
     
-    var   orm               = require('ee-orm')
-        , ORMLocalization   = require('ee-orm-localization');
+    var   orm               = require('related')
+        , ORMLocalization   = require('related-localization');
 
 
     var orm = new ORM(dbConfig);

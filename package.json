@@ -1,40 +1,40 @@
 {
-      "name"                        : "ee-orm-localization"
+      "name"                        : "ated-localization"
     , "description"                 : "adds support for localization tables"
-    , "version"                     : "1.0.0"
-    , "homepage"                    : "https://github.com/eventEmitter/ee-orm-localization"
-    , "author"                      : "Michael van der Weg <michael@eventemitter.com> (http://eventemitter.com/)"
+    , "version"                     : "1.1.0"
+    , "homepage"                    : "https://github.com/eventEmitter/ated-localization"
+    , "author"                      : "Michael van der Weg <michael@joinbox.com> (http://joinbox.com/)"
     , "licence"                     : "mit"
     , "repository": {
-          "url"                     : "https://github.com/eventEmitter/ee-orm-localization.git"
+          "url"                     : "https://github.com/eventEmitter/ated-localization.git"
         , "type"                    : "git"
     }
     , "engines": {
         "node"                      : ">=v0.10.17"
     }
     , "bugs": {
-        "url"                       : "https://github.com/eventEmitter/ee-orm-localization/issues"
+        "url"                       : "https://github.com/eventEmitter/ated-localization/issues"
     }
     , "dependencies": {
           "ee-class"                : "1.0.x"
         , "ee-event-emitter"        : "0.1.x"
         , "ee-types"                : "0.1.x"
         , "ee-log"                  : "0.2.x"
-        , "ee-orm-extension"        : "^0.1.7"
-        , "ee-async"                : "^0.2.10"
+        , "related-extension"       : "0.4.x"
+        , "ee-async"                : "0.2.x"
         , "es6-promise"             : "2.0.x"
-        , "ee-argv"                 : "^0.x.x"
+        , "ee-argv"                 : "0.x.x"
     }
     , "peerDependencies": {
-          "ee-orm"                  : "^0.x.x"
+          "related"                 : "0.x.x"
     }
     , "devDependencies": {
           "mocha"                   : "1.17.x"
         , "ee-project"              : "0.2.x"
-        , "ee-orm"                  : "^0.x.x"
+        , "related"                 : "x.x.x"
     }
     , "optionalDependencies": {}
-    , "keywords"                    : ["ee", "orm", "nested-set", "extension"]
+    , "keywords"                    : ["related", "orm", "nested-set", "extension"]
     , "scripts": {
         "test"                      : "./node_modules/mocha/bin/mocha --reporter spec --bail"
     }

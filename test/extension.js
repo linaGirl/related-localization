@@ -7,7 +7,7 @@
 		, assert 		= require('assert')
 		, async 		= require('ee-async')
 		, fs 			= require('fs')
-		, ORM 			= require('ee-orm');
+		, ORM 			= require('related');
 
 
 
@@ -37,7 +37,7 @@
 				config = [{
 		              type      : 'postgres'
 		            , database  : 'test'
-		            , schema    : 'ee_orm_localization_test'
+		            , schema    : 'related_localization_test'
 		            , hosts: [{
 		                  host           : 'localhost'
 		                , username       : 'postgres'
@@ -54,7 +54,7 @@
 		});
 
 		it('should be able to drop & create the testing schema ('+sqlStatments.length+' raw SQL queries)', function(done) {
-			orm.getDatabase('ee_orm_localization_test').getConnection(function(err, connection) {
+			orm.getDatabase('related_localization_test').getConnection(function(err, connection) {
 				if (err) done(err);
 				else async.each(sqlStatments, connection.queryRaw.bind(connection), done);
 			});
@@ -94,7 +94,7 @@
 		var oldDate;
 
 		it('should not crash when instatiated', function() {
-			db = orm.ee_orm_localization_test;
+			db = orm.related_localization_test;
 			extension = new Localization({orm: orm});
 		});
 
@@ -105,7 +105,7 @@
 		});
 
 		it('set var should work ;)', function() {
-			db = orm.ee_orm_localization_test;
+			db = orm.related_localization_test;
 		});
 
 
