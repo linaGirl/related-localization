@@ -95,7 +95,7 @@
 
 		it('should not crash when instatiated', function() {
 			db = orm.related_localization_test;
-			extension = new Localization({orm: orm});
+			extension = new Localization();
 		});
 
 
