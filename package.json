@@ -1,7 +1,7 @@
 {
       "name"                        : "related-localization"
     , "description"                 : "adds support for localization tables"
-    , "version"                     : "1.1.3"
+    , "version"                     : "1.1.4"
     , "homepage"                    : "https://github.com/eventEmitter/related-localization"
     , "author"                      : "Michael van der Weg <michael@joinbox.com> (http://joinbox.com/)"
     , "licence"                     : "mit"
