@@ -1,7 +1,7 @@
 {
       "name"                        : "related-localization"
     , "description"                 : "Support for entities with localized content"
-    , "version"                     : "1.1.10"
+    , "version"                     : "1.1.11"
     , "homepage"                    : "https://github.com/eventEmitter/related-localization"
     , "author"                      : "Michael van der Weg <michael@joinbox.com> (http://joinbox.com/)"
     , "license"                     : "MIT"
