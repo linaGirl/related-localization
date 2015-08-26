@@ -137,9 +137,12 @@
 			db.event(['*']).find(expect('[{"id":1,"title":null,"id_venue":1}]', done));
 		});
 
+
 		it('the extension should remove selected fields from the parent entity', function(done) {
 			db.event(['id', 'description']).setLocale(['nl', 'de']).find(expect('[{"id":1,"description":"nl"}]', done));
 		});
+
+
 
 		it('should work on non localized tables ', function(done) {
 			db.venue('*').find(expect('[{"id":1}]', done));
