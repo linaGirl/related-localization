@@ -1,7 +1,7 @@
 {
       "name"                        : "related-localization"
     , "description"                 : "Support for entities with localized content"
-    , "version"                     : "1.1.12"
+    , "version"                     : "1.1.13"
     , "homepage"                    : "https://github.com/eventEmitter/related-localization"
     , "author"                      : "Michael van der Weg <michael@joinbox.com> (http://joinbox.com/)"
     , "license"                     : "MIT"
@@ -10,7 +10,7 @@
         , "type"                    : "git"
     }
     , "engines": {
-        "node"                      : ">=v0.12"
+        "node"                      : ">=v4"
     }
     , "bugs": {
         "url"                       : "https://github.com/eventEmitter/related-localization/issues"
@@ -18,20 +18,19 @@
     , "dependencies": {
           "ee-class"                : "1.x"
         , "ee-types"                : "1.x"
+        , "related-extension"       : "1.x"
         , "ee-event-emitter"        : "0.3.x"
         , "ee-log"                  : "0.3.x"
-        , "related-extension"       : "0.4.x"
         , "ee-async"                : "0.2.x"
-        , "es6-promise"             : "2.0.x"
         , "ee-argv"                 : "0.x.x"
     }
     , "peerDependencies": {
-          "related"                 : "0.x.x"
+          "related"                 : "1.x"
     }
     , "devDependencies": {
-          "mocha"                   : "1.17.x"
+          "mocha"                   : "2.x"
         , "ee-project"              : "0.2.x"
-        , "related"                 : "*"
+        , "related"                 : "1.x"
     }
     , "optionalDependencies": {}
     , "keywords"                    : ["related", "orm", "nested-set", "extension"]
