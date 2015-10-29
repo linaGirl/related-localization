@@ -1,16 +1,11 @@
 # related-localization
 
+[![npm](https://img.shields.io/npm/dm/related-localization.svg?style=flat-square)](https://www.npmjs.com/package/related-localization)
+[![Travis](https://img.shields.io/travis/eventEmitter/related-localization.svg?style=flat-square)](https://travis-ci.org/eventEmitter/related-localization)
+[![node](https://img.shields.io/node/v/related-localization.svg?style=flat-square)](https://nodejs.org/)
+
 Adds support for locale table sot the related. If you store your locale data on mapping tables between the entity and a 
 lanugage table this extension loads the locale data and puts the on the entity itself. currently read only.
-
-## installation
-
-	npm install related-localization
-
-
-## build status
-
-[![Build Status](https://travis-ci.org/eventEmitter/related-localization.png?branch=master)](https://travis-ci.org/eventEmitter/related-localization)
 
 
 
@@ -37,7 +32,7 @@ You need to store your localized data on mapping tables if you want to use this 
 - tite: varchar(200)
 
 
-## usage
+## API
 
 
 To add the extension to the orm you have to initialize the extension first.
