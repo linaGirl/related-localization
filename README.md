@@ -1,5 +1,7 @@
 # related-localization
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/eventEmitter/related-localization.svg)](https://greenkeeper.io/)
+
 [![npm](https://img.shields.io/npm/dm/related-localization.svg?style=flat-square)](https://www.npmjs.com/package/related-localization)
 [![Travis](https://img.shields.io/travis/eventEmitter/related-localization.svg?style=flat-square)](https://travis-ci.org/eventEmitter/related-localization)
 [![node](https://img.shields.io/node/v/related-localization.svg?style=flat-square)](https://nodejs.org/)
