@@ -1,3 +1,6 @@
+process.argv.push('--related-errors');
+//process.argv.push('--related-sql');
+
 (function() {
 	'use strict';
 
@@ -186,6 +189,8 @@
 	});
 
 
+
+
 	describe('[Storing]', function() {
 		it('new locale records should work!', function(done) {
 			new db.event({
@@ -218,7 +223,29 @@
 				}
 			}.bind(this));
 		});
+
+		it('removing one of two localized values should work', function(done) {
+			db.venue({id:1}).setLocale(['it']).findOne(function(err, venue) {
+				if (err) done(err);
+				else if (!venue) done(new Error('record not found'));
+				else {
+					venue.title = 'my-title';
+					venue.description = 'my-description';
+					venue.setLocale('it');
+
+					venue.save(expect('{"id":1,"title":"my-title","description":"my-description"}', () => {
+						db.venue({id:1}).setLocale(['it']).findOne((err, newVenue) => {
+							newVenue.description = null;
+							newVenue.setLocale('it');
+							newVenue.save(expect('{"id":1,"title":"my-title"}', done));
+						});
+					}));
+				}
+			}.bind(this));
+		});
 	});
+
+
 
 
 

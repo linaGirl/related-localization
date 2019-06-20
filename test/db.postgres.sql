@@ -43,3 +43,14 @@ CREATE TABLE related_localization_test."eventLocale" (
     , CONSTRAINT "fk_eventLocale_event" FOREIGN KEY (id_event) REFERENCES related_localization_test.event (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
     , CONSTRAINT "fk_eventLocale_language" FOREIGN KEY (id_language) REFERENCES related_localization_test.language (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE RESTRICT
 );
+
+
+CREATE TABLE related_localization_test."venueLocale" (
+      id_venue          integer NOT NULL
+    , id_language       integer NOT NULL
+    , description       text
+    , title             text
+    , CONSTRAINT "pk_venueLocale" PRIMARY KEY (id_venue, id_language)
+    , CONSTRAINT "fk_venueLocale_venue" FOREIGN KEY (id_venue) REFERENCES related_localization_test.venue (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+    , CONSTRAINT "fk_venueLocale_language" FOREIGN KEY (id_language) REFERENCES related_localization_test.language (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE RESTRICT
+);

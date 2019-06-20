@@ -1,39 +1,44 @@
 {
-      "name"                        : "related-localization"
-    , "description"                 : "Support for entities with localized content"
-    , "version"                     : "2.1.1"
-    , "homepage"                    : "https://github.com/eventEmitter/related-localization"
-    , "author"                      : "Michael van der Weg <michael@joinbox.com> (http://joinbox.com/)"
-    , "license"                     : "MIT"
-    , "repository": {
-          "url"                     : "https://github.com/eventEmitter/related-localization.git"
-        , "type"                    : "git"
-    }
-    , "engines": {
-        "node"                      : ">=v4"
-    }
-    , "bugs": {
-        "url"                       : "https://github.com/eventEmitter/related-localization/issues"
-    }
-    , "dependencies": {
-          "ee-class"                : "1.x"
-        , "ee-types"                : "2.x"
-        , "related-extension"       : "1.x"
-        , "ee-event-emitter"        : "0.3.x"
-        , "ee-log"                  : "0.3.x"
-        , "ee-argv"                 : "0.x.x"
-    }
-    , "peerDependencies": {
-          "related"                 : "2.x"
-    }
-    , "devDependencies": {
-          "mocha"                   : "2.x"
-        , "ee-project"              : "0.2.x"
-        , "related"                 : "2.x"
-    }
-    , "optionalDependencies": {}
-    , "keywords"                    : ["related", "orm", "nested-set", "extension"]
-    , "scripts": {
-        "test"                      : "./node_modules/mocha/bin/mocha --reporter spec --bail"
+    "name": "related-localization",
+    "description": "easy translations for the related orm",
+    "version": "2.2.0",
+    "homepage": "https://github.com/eventEmitter/related-localization",
+    "author": "Lina van der Weg <lina@joinbox.com> (http://joinbox.com/)",
+    "license": "MIT",
+    "repository": {
+        "url": "https://github.com/eventEmitter/related-localization.git",
+        "type": "git"
+    },
+    "engines": {
+        "node": ">=v4"
+    },
+    "bugs": {
+        "url": "https://github.com/eventEmitter/related-localization/issues"
+    },
+    "dependencies": {
+        "ee-class": "1.x",
+        "ee-types": "2.x",
+        "related-extension": "1.x",
+        "ee-event-emitter": "0.3.x",
+        "ee-log": "0.3.x",
+        "ee-argv": "0.x.x"
+    },
+    "peerDependencies": {
+        "related": "2.x"
+    },
+    "devDependencies": {
+        "mocha": "2.x",
+        "ee-project": "0.2.x",
+        "related": "2.x"
+    },
+    "optionalDependencies": {},
+    "keywords": [
+        "related",
+        "orm",
+        "nested-set",
+        "extension"
+    ],
+    "scripts": {
+        "test": "./node_modules/mocha/bin/mocha --reporter spec --bail"
     }
 }
